@@ -50,10 +50,8 @@ jobs:
           R -e 'tinytex::tlmgr_install(c("pgf", "preview", "xcolor", "grfext"))'
           make gitbook
 
-      - name: Install npm
-        uses: actions/setup-node@v1
-
       - name: Deploy to Netlify
+        if: github.ref != 'refs/heads/master'
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './_book'
