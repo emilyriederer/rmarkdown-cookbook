@@ -28,6 +28,7 @@ jobs:
           brew cask install xquartz
           brew install pkg-config cairo
           brew install v8
+          brew install asymptote
 
       - name: Cache bookdown results
         uses: actions/cache@v1
@@ -46,7 +47,6 @@ jobs:
 
       - name: Build site
         run: |
-          sudo apt-get install asymptote
           R -e 'install.packages(c("bookdown", "knitr", "xfun", "rmarkdown", "tinytex"))'
           R -e 'tinytex::tlmgr_install(c("pgf", "preview", "xcolor", "grfext"))'
           make gitbook
